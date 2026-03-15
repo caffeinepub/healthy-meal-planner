@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Warm Tamil Spice Palette */
+    --background: 0.97 0.015 75;
+    --foreground: 0.18 0.03 45;
+
+    --card: 1.0 0 0;
+    --card-foreground: 0.18 0.03 45;
+
+    --popover: 1.0 0 0;
+    --popover-foreground: 0.18 0.03 45;
+
+    /* Saffron / Turmeric Primary */
+    --primary: 0.72 0.18 65;
+    --primary-foreground: 0.15 0.02 55;
+
+    /* Forest Green Secondary */
+    --secondary: 0.45 0.12 150;
+    --secondary-foreground: 0.97 0.01 150;
+
+    --muted: 0.94 0.02 75;
+    --muted-foreground: 0.55 0.04 65;
+
+    /* Warm Amber Accent */
+    --accent: 0.68 0.15 52;
+    --accent-foreground: 0.12 0.02 50;
+
+    --destructive: 0.55 0.22 22;
+    --destructive-foreground: 0.98 0.01 0;
+
+    --border: 0.88 0.03 75;
+    --input: 0.88 0.03 75;
+    --ring: 0.72 0.18 65;
+
+    --radius: 1rem;
+
+    --chart-1: 0.72 0.18 65;
+    --chart-2: 0.45 0.12 150;
+    --chart-3: 0.55 0.22 22;
+    --chart-4: 0.6 0.15 200;
+    --chart-5: 0.65 0.18 30;
+
+    --sidebar: 0.97 0.015 75;
+    --sidebar-foreground: 0.18 0.03 45;
+    --sidebar-primary: 0.72 0.18 65;
+    --sidebar-primary-foreground: 0.15 0.02 55;
+    --sidebar-accent: 0.94 0.02 75;
+    --sidebar-accent-foreground: 0.18 0.03 45;
+    --sidebar-border: 0.88 0.03 75;
+    --sidebar-ring: 0.72 0.18 65;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-tamil;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Tamil text improvements */
+  [lang="ta"],
+  .tamil {
+    font-family: "Noto Sans Tamil", sans-serif;
+  }
+}
+
+/* Mobile container */
+.app-container {
+  max-width: 430px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  position: relative;
+  background: oklch(var(--background));
+  overflow-x: hidden;
+}
+
+/* Bottom nav height */
+.bottom-nav-spacer {
+  height: 5rem;
+}
+
+/* Spice pattern background */
+.spice-pattern {
+  background-image: radial-gradient(
+      circle at 20% 30%,
+      oklch(0.72 0.18 65 / 0.08) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      oklch(0.45 0.12 150 / 0.06) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      oklch(0.65 0.15 52 / 0.04) 0%,
+      transparent 70%
+    );
+}
+
+/* Card hover lift */
+.card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px oklch(0.72 0.18 65 / 0.15);
+}
+
+/* Tamil keyboard styles */
+.tamil-keyboard {
+  background: oklch(0.22 0.03 45);
+  border-radius: 1.25rem 1.25rem 0 0;
+  padding: 0.75rem 0.5rem 1.5rem;
+  box-shadow: 0 -4px 24px oklch(0 0 0 / 0.2);
+}
+
+.tamil-key {
+  font-family: "Noto Sans Tamil", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  min-width: 2.4rem;
+  height: 2.6rem;
+  border-radius: 0.5rem;
+  background: oklch(0.32 0.03 45);
+  color: oklch(0.95 0.01 75);
+  border: 1px solid oklch(0.4 0.04 45);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s, transform 0.1s;
+  flex: 1;
+}
+
+.tamil-key:active,
+.tamil-key.pressed {
+  background: oklch(0.72 0.18 65);
+  color: oklch(0.15 0.02 55);
+  transform: scale(0.95);
+}
+
+.tamil-key.special {
+  background: oklch(0.45 0.12 150);
+  color: oklch(0.97 0.01 150);
+  min-width: 4rem;
+  font-size: 0.8rem;
+}
+
+.tamil-key.backspace {
+  background: oklch(0.5 0.18 22);
+  color: white;
+  min-width: 3.5rem;
+}
+
+.tamil-key.space-key {
+  flex: 3;
+  min-width: 8rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Scroll snap for day selector */
+.day-scroll {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.day-snap {
+  scroll-snap-align: center;
+}
+
+/* Gradient header */
+.header-gradient {
+  background: linear-gradient(
+    135deg,
+    oklch(0.72 0.18 65) 0%,
+    oklch(0.65 0.15 52) 100%
+  );
+}
+
+/* Leaf decoration */
+.leaf-border {
+  border-left: 3px solid oklch(0.45 0.12 150);
+  padding-left: 0.75rem;
+}
+
+/* Pulse animation for active states */
+@keyframes gentle-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.gentle-pulse {
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent zoom on input focus (iOS) */
+input,
+select,
+textarea {
+  font-size: 16px !important;
+}
